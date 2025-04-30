@@ -3,6 +3,7 @@ layout: default
 title: About Me
 ---
 
+
 ## About Me
 
 I’m Victor Hernandez, a technical writer with a background in military systems, compliance, and structured content design.
