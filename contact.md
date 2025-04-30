@@ -3,6 +3,7 @@ layout: default
 title: Contact
 ---
 
+
 ## Get in Touch
 
 I'm currently open to opportunities in technical writing, documentation, training development, and operations. Let's connect.
