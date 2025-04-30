@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +6,47 @@
   <title>Victor Hernandez | Technical Writing Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --light-bg: rgba(255, 255, 255, 0.95);
+      --light-text: #111;
+      --dark-bg: rgba(0, 0, 0, 0.6);
+      --dark-text: white;
+      --dark-link: #8ab4f8;
+      --light-link: #0366d6;
+    }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      color: white;
       background: url('https://images.unsplash.com/photo-1447433819943-74a20887a5b7?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
       background-size: cover;
+      transition: background 0.3s ease, color 0.3s ease;
     }
+
+    body.dark {
+      color: var(--dark-text);
+    }
+
+    body.light {
+      background: var(--light-bg);
+      color: var(--light-text);
+    }
+
     header {
       background: rgba(0, 0, 0, 0.7);
       padding: 60px 20px;
       text-align: center;
+      transition: background 0.3s ease;
     }
-    header h1 {
-      font-size: 2.8em;
-      margin-bottom: 10px;
+
+    body.light header {
+      background: var(--light-bg);
     }
+
+    header h1, header p {
+      margin: 0;
+    }
+
     nav {
       background-color: rgba(0, 0, 0, 0.9);
       display: flex;
@@ -30,27 +54,44 @@
       gap: 30px;
       padding: 10px 0;
     }
+
+    body.light nav {
+      background-color: var(--light-bg);
+    }
+
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s ease;
     }
+
+    body.light nav a {
+      color: var(--light-text);
+    }
+
     nav a:hover {
       color: #ffd700;
     }
+
     section {
       padding: 60px 20px;
-      background: rgba(0, 0, 0, 0.6);
-      margin: 20px;
+      background: var(--dark-bg);
+      margin: 20px auto;
       border-radius: 8px;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      transition: background 0.3s ease, color 0.3s ease;
     }
+
+    body.light section {
+      background: var(--light-bg);
+    }
+
     h2 {
       border-bottom: 2px solid #ffd700;
       padding-bottom: 10px;
     }
+
     .btn {
       display: inline-block;
       background-color: #2980b9;
@@ -62,99 +103,96 @@
       margin-top: 20px;
       transition: background 0.3s ease;
     }
+
     .btn:hover {
       background-color: #1c598a;
     }
+
     footer {
       text-align: center;
       padding: 30px 20px;
       background-color: rgba(0, 0, 0, 0.8);
       margin-top: 40px;
     }
+
+    body.light footer {
+      background-color: var(--light-bg);
+    }
+
+    /* Toggle button styles */
+    .toggle-wrapper {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #2196f3;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .toggle-label {
+      margin-left: 0.5rem;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    body.light .toggle-label {
+      color: var(--light-text);
+    }
   </style>
-
-  :root {
-  --light-bg: rgba(0, 0, 0, 0.6);
-  --light-text: #ffffff;
-  --dark-bg: #f5f5f5;
-  --dark-text: #222222;
-  --dark-link: #0366d6;
-}
-
-body.light {
-  background-color: var(--dark-bg);
-  color: var(--dark-text);
-}
-
-body.light section {
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--dark-text);
-}
-
-body.light nav,
-body.light header,
-body.light footer {
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
-body.light nav a,
-body.light header h1,
-body.light header p,
-body.light footer {
-  color: var(--dark-text);
-}
-
-body.light nav a:hover {
-  color: var(--dark-link);
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 24px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
 </head>
 <body>
+
+  <!-- Dark Mode Toggle Button -->
+  <div class="toggle-wrapper">
+    <label class="switch">
+      <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+      <span class="slider round"></span>
+    </label>
+    <span id="themeLabel" class="toggle-label">Loading...</span>
+  </div>
 
   <header>
     <h1>Victor Hernandez</h1>
@@ -166,7 +204,7 @@ input:checked + .slider:before {
     <a href="#project">Project</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
-    <a href="https://victorwrites.github.io/user-guide-articles/" target="_blank">Documentation</a>
+    <a href="https://yourusername.github.io/user-guide-articles/" target="_blank">Documentation</a>
   </nav>
 
   <section id="about">
@@ -213,48 +251,38 @@ input:checked + .slider:before {
   </footer>
 
   <script>
-function setTheme(theme) {
-  document.body.classList.remove("light", "dark");
-  document.body.classList.add(theme);
-  localStorage.setItem("theme", theme);
+    function setTheme(theme) {
+      document.body.classList.remove("light", "dark");
+      document.body.classList.add(theme);
+      localStorage.setItem("theme", theme);
 
-  const label = document.getElementById("themeLabel");
-  const toggle = document.getElementById("themeToggle");
-  if (theme === "dark") {
-    label.textContent = "Switch to Light Mode";
-    toggle.checked = true;
-  } else {
-    label.textContent = "Switch to Dark Mode";
-    toggle.checked = false;
-  }
-}
+      const label = document.getElementById("themeLabel");
+      const toggle = document.getElementById("themeToggle");
 
-function toggleTheme() {
-  const isDark = document.body.classList.contains("dark");
-  setTheme(isDark ? "light" : "dark");
-}
+      if (theme === "dark") {
+        label.textContent = "Switch to Light Mode";
+        toggle.checked = true;
+      } else {
+        label.textContent = "Switch to Dark Mode";
+        toggle.checked = false;
+      }
+    }
 
-window.onload = function () {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light" || savedTheme === "dark") {
-    setTheme(savedTheme);
-  } else {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setTheme(prefersDark ? "dark" : "light");
-  }
-};
-</script>
+    function toggleTheme() {
+      const isDark = document.body.classList.contains("dark");
+      setTheme(isDark ? "light" : "dark");
+    }
 
+    window.onload = function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        setTheme(savedTheme);
+      } else {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setTheme(prefersDark ? "dark" : "light");
+      }
+    };
+  </script>
 
 </body>
-
-<!-- Dark Mode Toggle Button -->
-<div style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
-  <label class="switch">
-    <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
-    <span class="slider round"></span>
-  </label>
-  <span id="themeLabel" style="margin-left: 0.5rem; font-size: 0.9rem;">Loading...</span>
-</div>
-
 </html>
