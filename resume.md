@@ -3,6 +3,7 @@ layout: default
 title: Resume
 ---
 
+
 ## Resume
 
 📄 [Download my resume (PDF)](/docs/resume.pdf)
