@@ -3,6 +3,7 @@ layout: default
 title: Portfolio
 ---
 
+
 ## Portfolio
 
 Here are a few examples of my technical writing work:
