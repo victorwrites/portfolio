@@ -5,31 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Victor Hernandez</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #111;
-      color: white;
-      padding: 60px 20px;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    a {
-      color: #8ab4f8;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-  </style>
+<style>
+  :root {
+    --light-bg: #ffffff;
+    --light-text: #111;
+    --dark-bg: #111;
+    --dark-text: #eee;
+    --dark-link: #8ab4f8;
+    --light-link: #0366d6;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+    padding: 60px 20px;
+  }
+
+  body.light {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+  }
+
+  body.dark {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+
+  a {
+    color: inherit;
+  }
+
+  body.light a {
+    color: var(--light-link);
+  }
+
+  body.dark a {
+    color: var(--dark-link);
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .toggle-wrapper {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #2196f3;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+
+  .toggle-label {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+</style>
+
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -50,13 +134,45 @@
 
     <p>You can <a href="mailto:victor.hernandez3591@gmail.com">contact me by email</a> or <a href="https://www.linkedin.com/in/victorhernandez-hr" target="_blank">connect on LinkedIn</a>.</p>
   </div>
-</body>
-<!-- Dark Mode Toggle Button -->
-<div class="toggle-wrapper">
+  
+  <div class="toggle-wrapper">
   <label class="switch">
     <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
     <span class="slider round"></span>
   </label>
   <span id="themeLabel" class="toggle-label">Loading...</span>
 </div>
+
+  <script>
+function setTheme(theme) {
+  document.body.classList.remove("light", "dark");
+  document.body.classList.add(theme);
+  localStorage.setItem("theme", theme);
+
+  const label = document.getElementById("themeLabel");
+  const toggle = document.getElementById("themeToggle");
+
+  if (label && toggle) {
+    label.textContent = theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
+    toggle.checked = theme === "dark";
+  }
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.contains("dark");
+  setTheme(isDark ? "light" : "dark");
+}
+
+window.onload = function () {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    setTheme(savedTheme);
+  } else {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setTheme(prefersDark ? "dark" : "light");
+  }
+};
+</script>
+  
+</body>
 </html>
