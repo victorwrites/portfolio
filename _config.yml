@@ -1,0 +1,11 @@
+title: Victor Hernandez | Technical Writing Portfolio
+email: victor.hernandez3591@gmail.com
+description: >-
+  A clean and professional portfolio showcasing my work as a technical writer.
+baseurl: "" # leave empty for GitHub Pages root
+url: "https://victorwrites.github.io"
+
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
