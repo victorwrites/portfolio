@@ -14,3 +14,4 @@ Use the navigation bar above to explore:
 - [Portfolio](/portfolio)
 - [Resume](/resume)
 - [Contact](/contact)
+
